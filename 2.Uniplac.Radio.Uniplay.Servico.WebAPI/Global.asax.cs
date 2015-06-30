@@ -21,6 +21,7 @@ namespace _2.Uniplac.Radio.Uniplay.Servico.WebAPI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ProgramaContext>());
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<LocutorContext>());
         }
     }
