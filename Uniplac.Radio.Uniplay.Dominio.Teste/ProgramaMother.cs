@@ -14,7 +14,7 @@ namespace Uniplac.Radio.Uniplay.Dominio.Teste
             programa.Nome = "Programa que inicia as 22:00 e termina as 23:00";
             programa.HorarioInicio = new DateTime(2015, 01, 01, 22, 00, 00);
             programa.HorarioFim = new DateTime(2015, 01, 01, 23, 00, 00);
-            programa.Locutor = LocutorMother.produzirLocutorValido();
+            programa.Locutor = "Testonildo";
             return programa;
         }
 

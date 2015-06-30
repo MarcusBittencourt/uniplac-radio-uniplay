@@ -1,19 +1,7 @@
 ﻿application.controller('controlador-programas', function ($scope, $http) {
 
-    var ADICIONADO = 'ADICIONADO';
-    var EXCLUIDO = 'EXCLUIDO';
-    var ALTERADO = 'ALTERADO';
-
-    $scope.servico = { host: 'http://localhost:48980/api/', controlador: 'Programa' };
-    $scope.programas = $scope.carregar_todos_registros();
-
-    $scope.configurar_url = function () {
-        return $scope.servico.host + $scope.servico.controlador;
-    }
-
     $scope.adicionar = function (dados) {
-        var url = $scope.configurar_url();
-        $http.post(url, dados).success(function () {
+        $http.post('http://localhost:3969/api/Programa', dados).success(function () {
             alert('Registro adicionado com sucesso');
             carregar_todos_registros();
         }).error(function () {
@@ -22,8 +10,7 @@
     }
 
     $scope.excluir = function (dados) {
-        var url = $scope.configurar_url();
-        $http.delete(url, dados).success(function () {
+        $http.delete('http://localhost:3969/api/Programa/'+ dados.Id).success(function () {
             alert('Registro excluido com sucesso');
             carregar_todos_registros();
             delete $scope.modelo;
@@ -33,8 +20,7 @@
     }
 
     $scope.alterar = function (dados) {
-        var url = $scope.configurar_url();
-        $http.put(url, dados).success(function () {
+        $http.put('http://localhost:3969/api/Programa/' + dados.Id, dados).success(function () {
             alert('Registro alterado com sucesso');
             carregar_todos_registros();
         }).error(function () {
@@ -42,36 +28,13 @@
         });
     }
 
-    $scope.carregar_todos_registros = function () {
-        var url = $scope.configurar_url();
-        $http.put(url).success(function (dados) {
+    var carregar_todos_registros = function () {
+        $http.get('http://localhost:3969/api/Programa').success(function (dados) {
             $scope.programas = dados;
-            $scope.programas = [{ Nome: "Teste", Sobrenome: "Teste" }, { Nome: "Testes2", Sobrenome: "------" }];
         }).error(function () {
             alert('Falha ao carregar os registros');
         });
     }
 
-    $scope.salvar = function (dados) {
-        for (registro in dados) {
-            if (dados[registro].estado == ADICIONADO) {
-                $scope.adicionar(dados[registro]);
-            }
-            if (dados[registro].estado == ALTERADO) {
-                $scope.alterar(dados[registro]);
-            }
-            if (dados[registro].estado == EXCLUIDO) {
-                $.$scope.excluir(dados[registro]);
-            }
-        }
-    }
-
-    $scope.marcar_para_edicao = function (registro) {
-        registro.estado = ALTERADO;
-    }
-
-    $scope.marcar_para_exclusao = function (registro) {
-        registro.estado = EXCLUIDO;
-    }
-
+    carregar_todos_registros();
 });

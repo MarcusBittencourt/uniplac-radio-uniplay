@@ -4,10 +4,11 @@
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="../Controladores/inicializador-aplicacao.js"></script>
-    <script src="../Controladores/controlador-comum.js"></script>
+    <script>
+        var application = angular.module('uniplac.radio.uniplay', []);
+    </script>
+    <!--<script src="../Controladores/inicializador-aplicacao.js"></script>-->
     <script src="../Controladores/controlador-locutores.js"></script>
-
     <style>
         .jumbotron {
             width: 800px;
@@ -29,31 +30,30 @@
     <div class="jumbotron">
         <table class="table table-striped">
             <tr>
+                <th>Id</th>
                 <th>Nome</th>
                 <th>Sobrenome</th>
                 <th>Apelido</th>
-                <th>Biografia</th>
                 <th>Data de nascimento</th>
-                <th></th>
-                <th></th>
             </tr>
             <tr ng-repeat="locutor in locutores">
-                <td><input class="form-control" placeholder="Nome" ng-model="locutor.Nome" type="text" /></td>
-                <td><input class="form-control" placeholder="Sobrenome" ng-model="locutor.Sobrenome" type="text" /></td>
-                <td><input class="form-control" placeholder="Apelido" ng-model="locutor.Apelido" type="text" /></td>
-                <td><input class="form-control" placeholder="Data de nascimento" ng-model="locutor.DataNascimento" type="text" /></td>
-                <td><input type="button" class="glyphicon glyphicon-pencil" ng-click="marcar_para_edicao(locutor)" /></td>
-                <td><input type="button" class="glyphicon glyphicon-remove" ng-click="marcar_para_exclusao(locutor)" /></td>
+                <td>{{locutor.Id}}</td>
+                <td>{{locutor.Nome}}</td>
+                <td>{{locutor.Sobrenome}}</td>
+                <td>{{locutor.Apelido}}</td>
+                <td>{{locutor.DataNascimento}}</td>
             </tr>
         </table>
-        <div ng-model="locutor">
-            <input class="form-control" placeholder="Nome" ng-model="locutor.Nome" type="text" />
-            <input class="form-control" placeholder="Sobrenome" ng-model="locutor.Sobrenome" type="text" />
-            <input class="form-control" placeholder="Apelido" ng-model="locutor.Apelido" type="text" />
-            <input class="form-control" placeholder="Biografia" ng-model="locutor.Biografia" type="text" />
-            <input class="form-control" placeholder="Data de nascimento" ng-model="locutor.DataNascimento" type="text" />
-            <input class="form-control" type="button" ng-click="salvar(locutor)" value="Salvar" class="form-control glyphicon glyphicon-floppy-disk">
-        </div>
+        <input class="form-control" placeholder="Id" ng-model="locutor.Id" type="text" />
+        <input class="form-control" placeholder="Nome" ng-model="locutor.Nome" type="text" />
+        <input class="form-control" placeholder="Sobrenome" ng-model="locutor.Sobrenome" type="text" />
+        <input class="form-control" placeholder="Apelido" ng-model="locutor.Apelido" type="text" />
+        <textarea class="form-control" placeholder="Biografia" ng-model="locutor.Biografia"></textarea>
+        <input class="form-control" placeholder="Data de nascimento" ng-model="locutor.DataNascimento" type="text" />
+
+        <input class="form-control" type="button" ng-click="adicionar(locutor)" value="Salvar" />
+        <input class="form-control" type="button" ng-click="excluir(locutor)" value="Excluir" />
+        <input class="form-control" type="button" ng-click="alterar(locutor)" value="Alterar" />
     </div>
 </body>
 </html>

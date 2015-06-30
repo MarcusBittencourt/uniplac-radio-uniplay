@@ -12,7 +12,7 @@ namespace Uniplac.Radio.Uniplay.Dominio
         public String Nome { get; set; }
         public DateTime HorarioInicio { get; set; }
         public DateTime HorarioFim { get; set; }
-        public Locutor Locutor { get; set; }
+        public String Locutor { get; set; }
         public void Validar() 
         {
             if (Locutor == null) 

@@ -37,7 +37,7 @@ namespace Uniplac.Radio.Uniplay.Persistencia.Teste
             Assert.IsNotNull(programa);
             Assert.IsTrue(programa.Id > 0);
             Assert.IsFalse(string.IsNullOrEmpty(programa.Nome));
-            Assert.IsFalse(programa.Locutor != null);
+            Assert.IsFalse(string.IsNullOrEmpty(programa.Locutor));
             Assert.IsFalse(programa.HorarioInicio == null);
             Assert.IsFalse(programa.HorarioFim == null);
         }
